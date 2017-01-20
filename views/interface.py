@@ -27,7 +27,7 @@ class Interface(object):
 	def addskill(self, skillname,skilldescription=""):
 		print ("skill called")
 
-	def viewskills(skill_list):
+	def viewskills(skill_dict):
 		pass
 	def exitapp():
 		pass
