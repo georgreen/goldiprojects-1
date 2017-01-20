@@ -1,5 +1,5 @@
-from model.cache import CACHE
-from view.interface import Interface
+from model.cache import Cache
+from views.interface import Interface
 
 class applogic(object):
 
