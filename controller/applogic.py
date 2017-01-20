@@ -1,21 +1,18 @@
-from model.cache import Cache
-from views.interface import Interface
-
 class applogic(object):
-
-    def __init__(self, username):
+    def __init__(self, username, userdata, Interface):
         self.username = username
         self.user_skills = {}
-        self.user_data = userdata()
-        self.user_interface = Interface()
 
-    def getskills_user (self, message = 'Please Enter your Username:'):
-        '''remember to ask for uder i[ut message'''
-        print(message)
+        #objects to hold user data
+        self.user_data = userdata
+        #object to hol our use interface
+        self.user_interface = Interface
+
+    def get_user_input(self, message = ''):
+        self.user_interface.AskForInput(message)
         user_input = input()
-        
         return user_input
-    
+
     def addskills_user(self, skill):
         self.user_skills[skill].append(skill)
 
@@ -27,48 +24,46 @@ class applogic(object):
 
         if user_response == 'a':
             #ask for input
-            user_in = self.getskills_user("Please add your skill")
+            user_in = self.get_user_input("Please add your skill")
             self.user_skills[user_in] = user_in
+            self.user_interface.successMessage("Add Skill")
+            self.pause_for_sometime()
         elif user_response == 'v':
             self.user_interface.viewskills(self.user_skills)
             pass
         elif user_response == 'd': #to be implemented
             pass
 
+    def pause_for_sometime(self, time = 100):
+        promt = -1
+        while(promt == -1):
+            promt = input("Press any key to continue: ")
+
     def run(self):
+        #get input from user
+        user_name = self.get_user_input('user name')
+
+        #check for details in Db about this user
+        greet_user = True
+
         while(True):
-            
             #display welcome message from views
-            self.user_interface.initialize()
-            #get input from user
-            users_userinput = self.getskills_user()
+            self.user_interface.initialize(user_name, greet_user)
 
             #get user response
-            user_response = self.getskills_user("Please input a response")
-
-            #call a fuction that decide what next
-            self.next_step(user_response)
+            user_response = self.get_user_input(" response")
 
             #exit if e was pressed
             if user_response == 'e':
-                print("Goodbye thank you")
+                self.user_interface.goodbyeMessage(user_name)
                 break
+
+            #call a fuction that decide what next
+            self.next_step(user_response)
+            greet_user = False
         return
 
-         #given
-
- ##############################################
-class userdata(object):
-     data_DB = CACHE()
-    def __init__(self, username = ''):
-
-        self.username = username
-        self.data = data_DB.get()
-
-    def getskills(self):
-        return data_DB
-
-        
-
-        
-        
+if __name__ == '__main__':
+    #importing the required modules views and model is hard
+    #so testing is to be done with main
+    pass

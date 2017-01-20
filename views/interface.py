@@ -1,36 +1,47 @@
 # Learncompanion project
 #interface cli
 class Interface(object):
-	"""docstring for interface"""
-	def __init__(self, command='x',status=True):
-		self.command = command
-		self.status = status
-	def initialize(self):
-		if (self.command =='x'):
-			print ("Welcome to Learn Companion")
-			print ("--------------------------")
-			print ("'a': Add Skill")
-			print ("'v': View Skill")
-			print ("'d': Delete Skill")
-			print ("'e': Exit")
-			self.command = input("Enter Command: ")
-		elif self.command=='a':
-			addskill(self, skillname,skilldescription)
-		elif self.command=='v':
-			pass
-		elif self.command=='e':
-			pass
-		else:
-			print ("Invalid command: ")
-			print ("Enter command:")
 
-	def addskill(self, skillname,skilldescription=""):
-		print ("skill called")
+    def __init__(self):
+        pass
 
-	def viewskills(skill_dict):
-		pass
-	def exitapp():
-		pass
+    def initialize(self, username = '', greet_user = False):
+        if greet_user :
+            print ("Hello " + username +" Welcome to Learn Companion")
+        print("-----------------------------")
+        print("          MENU               ")
+        print(".............................")
+        print("-----------------------------")
+        print ("Press -> 'a': Add Skill")
+        print ("Press -> 'v': View Skill")
+        print ("Press -> 'd': Delete Skill")
+        print ("Press -> 'e': Exit")
+        print("...........................")
+        return
+    
+    def viewskills(self, skill_dict):
+        return
 
-interface = Interface()
-interface.initialize()
+    def successMessage(self, taskdone = "Task"):
+        print("Sucess the " + taskdone + " was completed succesfully")
+        return
+
+    def ErrorMessage(self, taskFailed = "task"):
+        print("We aplogize there was an erro when doing " + taskFailed)
+        return
+    def AskForInput(self, inputMessage = 'data'):
+        print("Please Enter your " + inputMessage)
+        return
+    def goodbyeMessage(self, user_name = "user"):
+        print("Goodbye " + user_name +" thank you for using our App.")
+        return
+
+
+if __name__ == '__main__':
+    test = Interface()
+    test.initialize()
+    test.viewskills({})
+    test.successMessage()
+    test.ErrorMessage()
+    test.AskForInput()
+    test.goodbyeMessage()
