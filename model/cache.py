@@ -9,7 +9,7 @@ class Cache(dict):
 		
 	def get(self, outcome = None):
 		if outcome is not None:
-			return self[outcome]
+			return self.get(outcome, None)
 		else:
 			return self
 
