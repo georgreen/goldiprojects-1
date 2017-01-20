@@ -18,12 +18,12 @@ class Interface(object):
         print ("Press -> 'e': Exit")
         print("...........................")
         return
-    
+
     def viewskills(self, skill_dict):
         return
 
     def successMessage(self, taskdone = "Task"):
-        print("Sucess the " + taskdone + " was completed succesfully")
+        print("Sucess: " + taskdone + " was completed succesfully")
         return
 
     def ErrorMessage(self, taskFailed = "task"):
