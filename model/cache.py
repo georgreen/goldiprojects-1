@@ -13,10 +13,9 @@ class Cache(dict):
 		else:
 			return self
 
-	def set(self, new_data):
-		self = new_data
+	def save(self):
 		target = open('cache.json', 'w')
-		target.write(json.dumps(new_data))
+		target.write(json.dumps(self))
 		target.close()
 
 		
