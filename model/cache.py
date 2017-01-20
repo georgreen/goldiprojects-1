@@ -18,9 +18,5 @@ class Cache(dict):
 		target = open('cache.json', 'w')
 		target.write(json.dumps(new_data))
 		target.close()
-		
-c = Cache()
-c['Git'].append({'skill':'merge', 'done':True})
-c.set(c)
-print c
+
 		
