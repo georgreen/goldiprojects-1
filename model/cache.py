@@ -3,7 +3,7 @@ import json;
 class Cache(dict):
 	
 	def __init__(self):
-		target = open('cache.json', 'r')
+		target = open('model/cache.json', 'r')
 		super(Cache, self).__init__(json.loads(str(target.read())))
 		target.close()
 		
@@ -14,7 +14,7 @@ class Cache(dict):
 			return self
 
 	def save(self):
-		target = open('cache.json', 'w')
+		target = open('model/cache.json', 'w')
 		target.write(json.dumps(self))
 		target.close()
 
