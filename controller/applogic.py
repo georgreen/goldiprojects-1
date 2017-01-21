@@ -24,6 +24,15 @@ class applogic(object):
             self.user_data[skill] = [] #Add the input to DB
             return True
 
+    def deleteskill_user(self, skill):
+        if skill in self.user_data:
+            self.user_data.pop(skill)
+            return True
+        else:
+            self.user_interface.ErrorMessage('Delete skill')
+            self.user_interface.print_tokken('The skill ' + skill + ' Does not EXIST in your skills')
+            return False
+
     def listskills(self, list_skills):
         data = self.user_data.getskills()
 
@@ -32,7 +41,7 @@ class applogic(object):
 
         if user_response == 'a':
             #ask for input
-            user_in = self.get_user_input("Please add your skill")
+            user_in = self.get_user_input("Skill To BE ADDED")
             if self.addskills_user(user_in):
                 self.user_interface.successMessage("Add Skill")
             else:
@@ -44,8 +53,13 @@ class applogic(object):
                 self.user_interface.viewskills(skill, self.user_data[skill], show_label)
                 show_label = False
             self.pause_for_sometime()
-        elif user_response == 'd': #to be implemented
-            pass
+        elif user_response == 'd':
+            user_in = self.get_user_input("Skill TO BE DELETED")
+            if self.deleteskill_user(user_in):
+                self.user_interface.successMessage("Delete Skill")
+            else:
+                pass
+            self.pause_for_sometime()
 
     def pause_for_sometime(self, time = 100):
         promt = -1
