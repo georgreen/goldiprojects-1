@@ -26,12 +26,16 @@ class Interface(object):
         else:
             print(tokken * span, end = endx)
 
-    def viewskills(self, skill_name, skill_list, label = True):
+    def viewskills(self, skill_name, skill_list =[ 'Not Listed','0%'], label = False):
+        if len(skill_list) != 2:
+            skill_list = [ 'Not Listed','0%']
+        padding = 25
         if label:
-            self.print_tokken('| SKILL' + ' ' * len(skill_name) +'| Sub Task' + ' ' * len(skill_list[0]) + '| Progress')
-        self.print_tokken('   ' + skill_name + ' ' *len('SKILL'), 1, '')
-        self.print_tokken('  ' + skill_list[0] + ' ' * len('Sub Task'), 1, '')
-        self.print_tokken(' ' + str(skill_list[1]), 1, '')
+            self.print_tokken("            BeloW Find All Your Skills And Progress!")
+            self.print_tokken('| SKILL' + ' ' * padding  +'| Sub Task' + ' ' * padding + '| Progress')
+        self.print_tokken(' ' + skill_name + ' ' * ((len('SKILL') + padding) - len(skill_name)), 1, '')
+        self.print_tokken('   ' + skill_list[0] + ' ' * ((len('Sub Task') + padding) - len(skill_list[0])), 1, '')
+        self.print_tokken('     ' + str(skill_list[1]), 1, '')
         print()
         return
 

@@ -1,12 +1,12 @@
 import json;
 
 class Cache(dict):
-	
+
 	def __init__(self):
 		target = open('model/cache.json', 'r')
 		super(Cache, self).__init__(json.loads(str(target.read())))
 		target.close()
-		
+
 	def get(self, outcome = None):
 		if outcome is not None:
 			return self.get(outcome, None)
@@ -18,4 +18,9 @@ class Cache(dict):
 		target.write(json.dumps(self))
 		target.close()
 
-		
+
+if __name__ == '__main__':
+    #Running this file crushes
+    test_data = Cache()
+    print(test_data)
+    #print(test_data.get())

@@ -15,7 +15,14 @@ class applogic(object):
         return user_input
 
     def addskills_user(self, skill):
-        self.user_skills[skill].append(skill)
+        if skill in self.user_data:
+            self.user_interface.ErrorMessage('Adding skill')
+            self.user_interface.print_tokken('The skill ' + skill + ' Already exists!')
+            return False
+        else:
+            self.user_skills[skill] = []#Buffer to hold new data
+            self.user_data[skill] = [] #Add the input to DB
+            return True
 
     def listskills(self, list_skills):
         data = self.user_data.getskills()
@@ -26,12 +33,17 @@ class applogic(object):
         if user_response == 'a':
             #ask for input
             user_in = self.get_user_input("Please add your skill")
-            self.user_skills[user_in] = user_in
-            self.user_interface.successMessage("Add Skill")
+            if self.addskills_user(user_in):
+                self.user_interface.successMessage("Add Skill")
+            else:
+                pass
             self.pause_for_sometime()
         elif user_response == 'v':
-            self.user_interface.viewskills(self.user_skills)
-            pass
+            show_label = True
+            for skill in self.user_data:
+                self.user_interface.viewskills(skill, self.user_data[skill], show_label)
+                show_label = False
+            self.pause_for_sometime()
         elif user_response == 'd': #to be implemented
             pass
 
@@ -57,6 +69,7 @@ class applogic(object):
             #exit if e was pressed
             if user_response == 'e':
                 self.user_interface.goodbyeMessage(user_name)
+                self.user_data.save() #Store all the changes [Persistent data]
                 break
 
             #call a fuction that decide what next

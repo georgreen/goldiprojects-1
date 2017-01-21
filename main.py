@@ -7,7 +7,7 @@ from views.interface import Interface
 
 if __name__  == '__main__':
     username = ''
-    data = Cache() #Doin this cause an error 
+    data = Cache()
     UI = Interface()
     newapp = applogic(username, data, UI)
     newapp.run()
