@@ -5,6 +5,7 @@ class applogic(object):
 
         #objects to hold user data
         self.user_data = userdata
+
         #object to hol our use interface
         self.user_interface = Interface
 
